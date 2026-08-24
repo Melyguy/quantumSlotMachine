@@ -5,9 +5,15 @@ namespace QuantumSlotMachine {
     operation PlaySlotMachine() : Result[] {
         use qubits = Qubit[3];
 
-        for q in qubits {
-            H(q);
-        }
+        H(qubits[0]);
+        Rz(0.7, qubits[0]);   // phase shift
+        H(qubits[0]);
+
+        H(qubits[1]);
+        H(qubits[2]);
+
+        CNOT(qubits[0], qubits[1]);
+        CNOT(qubits[1], qubits[2]);
 
         mutable results = [];
 
